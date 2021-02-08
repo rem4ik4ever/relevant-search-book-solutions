@@ -17,32 +17,25 @@ Examples for this book are written in Python 2.7 and use iPython notebook. The f
 
 The examples expect Elasticsearch to be hosted at localhost:9200. So you'll need to install Elasticsearch to work with the examples. There's two ways to install Elasticsearch
 
-### Recommended: Vagrant
+### Docker
 
 Vagrant is a tool for installing and provisioning virtual machines locally for development purposes. If you've never used vagrant, you can follow the installation instructions [here](https://docs.vagrantup.com/v2/installation/). OpenSource Connections maintains a basic Elasticsearch vagrant box [here](https://github.com/o19s/elasticsearch-vagrant).
 
 To use the vagrant box
 
-1. Install vagrant
-2. Clone the Elasticsearch vagrant box from Github locally
-
-   ```
-   git clone git@github.com:o19s/elasticsearch-vagrant.git
-   ```
-3. Provision the Vagrant box (this install Elasticsearch and turns the box on)
-
-   ```
-   cd elasticsearch-vagrant
-   vagrant up --provision
-   ```
-4. Confirm Elasticsearch is running
+1. Install docker
+2. Run in Terminal
+```
+docker run -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch:7.10.2
+```
+3. Confirm Elasticsearch is running
 
   ```
   curl -XGET http://localhost:9200
   ```
-  
-  or visit this URL in your browser. 
-  
+
+  or visit this URL in your browser.
+
   You should see JSON returned from the Elasticsearch instance. Something like:
 
    ```json
@@ -60,16 +53,9 @@ To use the vagrant box
       }
    ```
 
-5. When you're done working with examples, turn off the Vagrant box
-
-  ```
-  vagrant halt
-  ```
-
-
 ### Locally on Your Machine
 
-Follow [Elasticsearch's instructions](http://www.elastic.co/guide/en/elasticsearch/reference/1.5/_installation.html) to install Elasticsearch on your machine. 
+Follow [Elasticsearch's instructions](http://www.elastic.co/guide/en/elasticsearch/reference/1.5/_installation.html) to install Elasticsearch on your machine.
 
 ## Running The Python Examples
 
